@@ -51,10 +51,13 @@ $scope.complete = function(id) {
     console.log(response);
 
     $scope.update();
-  });
+  })
+};
 
-}
 
+//junior
 $scope.deselect = function() {
   $scope.contact = "";
 }
+
+}]);﻿
