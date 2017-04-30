@@ -18,12 +18,6 @@ app.get('/HW5', function (req, res) {
   });
 });
 
-//   db.HW5.find().forEach( function(thisDoc) {
-//   if(thisDoc.statusProperty === 'unfinished'){
-//     //update the record that contains "Donald Draper" and change it to "Dick Whitman"
-//     db.names.update( { "_id" : thisDoc._id }, { "name": "Completed" } );
-//   };
-// });
 
 app.post('/HW5', function (req, res) {
   console.log(req.body);

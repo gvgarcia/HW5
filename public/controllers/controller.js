@@ -45,9 +45,6 @@ $scope.complete = function(id) {
   console.log(id);
   $http.get('/HW5/' + id).then(function(response) {
 
-    //edit respnse here
-    //how to edit a response
-
     response.data.statusProperty = "complete";
     $scope.contact = response.data;
 
