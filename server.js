@@ -3,50 +3,58 @@
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('contactlist', ['contactlist']);
+var db = mongojs('HW5', ['HW5']);
 var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-app.get('/contactlist', function (req, res) {
+app.get('/HW5', function (req, res) {
   console.log('I received a GET request');
 
-  db.contactlist.find(function (err, docs) {
+  db.HW5.find(function (err, docs) {
     console.log(docs);
     res.json(docs);
   });
 });
 
-app.post('/contactlist', function (req, res) {
+//   db.HW5.find().forEach( function(thisDoc) {
+//   if(thisDoc.statusProperty === 'unfinished'){
+//     //update the record that contains "Donald Draper" and change it to "Dick Whitman"
+//     db.names.update( { "_id" : thisDoc._id }, { "name": "Completed" } );
+//   };
+// });
+
+app.post('/HW5', function (req, res) {
   console.log(req.body);
-  db.contactlist.insert(req.body, function(err, doc) {
+  db.HW5.insert(req.body, function(err, doc) {
     res.json(doc);
   });
 });
 
-app.delete('/contactlist/:id', function (req, res) {
+app.delete('/HW5/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
-  db.contactlist.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
+  db.HW5.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
 });
 
-app.get('/contactlist/:id', function (req, res) {
+
+app.get('/HW5/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
-  db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+  db.HW5.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
 });
 
-app.put('/contactlist/:id', function (req, res) {
+app.put('/HW5/:id', function (req, res) {
   var id = req.params.id;
-  console.log(req.body.name);
-  db.contactlist.findAndModify({
+  console.log(req.body.id);
+  db.HW5.findAndModify({
     query: {_id: mongojs.ObjectId(id)},
-    update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number}},
+    update: {$set: {title: req.body.title, text: req.body.text, due: req.body.due, statusProperty: req.body.statusProperty}},
     new: true}, function (err, doc) {
       res.json(doc);
     }
