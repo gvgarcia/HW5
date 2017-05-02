@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', []);
 myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from controller");
-
+$scope.content = 'first';
 
 var refresh = function(){
        $http.get('/HW5').then(function(response){
@@ -51,10 +51,14 @@ $scope.complete = function(id) {
     console.log(response);
 
     $scope.update();
-  });
+  })
+};
 
-}
 
+//junior
 $scope.deselect = function() {
   $scope.contact = "";
 }
+
+}]);﻿
+
